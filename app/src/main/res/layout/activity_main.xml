@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#A7FFEB"
     tools:context=".MainActivity">
 
     <TextView
@@ -12,8 +13,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="15dp"
-        android:text="Hello World!"
-        android:textSize="15sp"
+        android:text="Chicago, IL, USA"
+        android:textColor="#000000"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -26,6 +28,7 @@
         android:gravity="center"
         android:padding="5dp"
         android:text="Wed, April 29 8:15 PM"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/location" />
@@ -34,15 +37,15 @@
         android:id="@+id/current_temp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:paddingLeft="10dp"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:text="61° F"
+        android:textColor="#000000"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/date_time" />
 
     <TextView
@@ -51,74 +54,84 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="5dp"
-        android:text="TextView"
+        android:text="Sunny"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/current_temp" />
 
     <TextView
         android:id="@+id/day1_precip"
-        android:layout_width="wrap_content"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
         android:paddingBottom="5dp"
-        android:text="TextView"
+        android:text="0%"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/day1_img" />
 
     <TextView
         android:id="@+id/day2_precip"
-        android:layout_width="wrap_content"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
         android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
         android:paddingBottom="5dp"
-        android:text="TextView"
+        android:text="0%"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/day1_precip"
         app:layout_constraintTop_toBottomOf="@+id/day2_img" />
 
     <TextView
         android:id="@+id/day3_precip"
-        android:layout_width="wrap_content"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
         android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
         android:paddingBottom="5dp"
-        android:text="TextView"
+        android:text="0%"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/day2_precip"
         app:layout_constraintTop_toBottomOf="@+id/day3_img" />
 
     <TextView
         android:id="@+id/day4_precip"
-        android:layout_width="wrap_content"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
         android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
         android:paddingBottom="5dp"
-        android:text="TextView"
+        android:text="0%"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/day3_precip"
         app:layout_constraintTop_toBottomOf="@+id/day4_img" />
 
     <TextView
         android:id="@+id/day5_precip"
-        android:layout_width="wrap_content"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
         android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
         android:paddingBottom="5dp"
-        android:text="TextView"
+        android:text="0%"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/day4_precip"
         app:layout_constraintTop_toBottomOf="@+id/day5_img" />
 
@@ -159,7 +172,7 @@
         android:id="@+id/day4_img"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_marginStart="13dp"
+        android:layout_marginStart="12dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         app:layout_constraintStart_toEndOf="@+id/day3_img"
@@ -170,7 +183,7 @@
         android:id="@+id/day5_img"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_marginStart="13dp"
+        android:layout_marginStart="12dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         app:layout_constraintStart_toEndOf="@+id/day4_img"
@@ -179,68 +192,100 @@
 
     <TextView
         android:id="@+id/day1_temp"
-        android:layout_width="wrap_content"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
         android:paddingBottom="5dp"
-        android:text="TextView"
+        android:text="40° F  57° F"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/day1_precip" />
 
     <TextView
         android:id="@+id/day2_temp"
-        android:layout_width="wrap_content"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
         android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
         android:paddingBottom="5dp"
-        android:text="TextView"
+        android:text="40° F  57° F"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/day1_temp"
         app:layout_constraintTop_toBottomOf="@+id/day2_precip" />
 
     <TextView
-        android:id="@+id/day3_temp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="5dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/day2_temp"
-        app:layout_constraintTop_toBottomOf="@+id/day3_precip" />
-
-    <TextView
         android:id="@+id/day4_temp"
-        android:layout_width="wrap_content"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
         android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
         android:paddingBottom="5dp"
-        android:text="TextView"
+        android:text="40° F  57° F"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/day3_temp"
         app:layout_constraintTop_toBottomOf="@+id/day4_precip" />
 
     <TextView
         android:id="@+id/day5_temp"
-        android:layout_width="wrap_content"
+        android:layout_width="65dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
         android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
         android:paddingBottom="5dp"
-        android:text="TextView"
+        android:text="40° F  57° F"
+        android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/day4_temp"
         app:layout_constraintTop_toBottomOf="@+id/day5_precip" />
+
+    <TextView
+        android:id="@+id/day3_temp"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+        android:text="40° F  57° F"
+        android:textColor="#000000"
+        app:layout_constraintStart_toEndOf="@+id/day2_temp"
+        app:layout_constraintTop_toBottomOf="@+id/day3_precip" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="65dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="140dp"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/weather_desc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_time"
+        app:srcCompat="@drawable/sunny" />
+
+    <Button
+        android:id="@+id/location_management"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Manage Locations"
+        style="@android:style/Widget.Holo.Button"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/day3_temp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
