@@ -7,12 +7,240 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/location"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="15dp"
         android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="15sp"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/date_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Wed, April 29 8:15 PM"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location" />
+
+    <TextView
+        android:id="@+id/current_temp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:text="61° F"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_time" />
+
+    <TextView
+        android:id="@+id/weather_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/current_temp" />
+
+    <TextView
+        android:id="@+id/day1_precip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/day1_img" />
+
+    <TextView
+        android:id="@+id/day2_precip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/day1_precip"
+        app:layout_constraintTop_toBottomOf="@+id/day2_img" />
+
+    <TextView
+        android:id="@+id/day3_precip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/day2_precip"
+        app:layout_constraintTop_toBottomOf="@+id/day3_img" />
+
+    <TextView
+        android:id="@+id/day4_precip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/day3_precip"
+        app:layout_constraintTop_toBottomOf="@+id/day4_img" />
+
+    <TextView
+        android:id="@+id/day5_precip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/day4_precip"
+        app:layout_constraintTop_toBottomOf="@+id/day5_img" />
+
+    <ImageView
+        android:id="@+id/day1_img"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="16dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weather_desc"
+        app:srcCompat="@drawable/sunny" />
+
+    <ImageView
+        android:id="@+id/day2_img"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="12dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:layout_constraintStart_toEndOf="@+id/day1_img"
+        app:layout_constraintTop_toBottomOf="@+id/weather_desc"
+        app:srcCompat="@drawable/sunny" />
+
+    <ImageView
+        android:id="@+id/day3_img"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="12dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:layout_constraintStart_toEndOf="@+id/day2_img"
+        app:layout_constraintTop_toBottomOf="@+id/weather_desc"
+        app:srcCompat="@drawable/sunny" />
+
+    <ImageView
+        android:id="@+id/day4_img"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="13dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:layout_constraintStart_toEndOf="@+id/day3_img"
+        app:layout_constraintTop_toTopOf="@+id/day3_img"
+        app:srcCompat="@drawable/sunny" />
+
+    <ImageView
+        android:id="@+id/day5_img"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="13dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:layout_constraintStart_toEndOf="@+id/day4_img"
+        app:layout_constraintTop_toTopOf="@+id/day3_img"
+        app:srcCompat="@drawable/sunny" />
+
+    <TextView
+        android:id="@+id/day1_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/day1_precip" />
+
+    <TextView
+        android:id="@+id/day2_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/day1_temp"
+        app:layout_constraintTop_toBottomOf="@+id/day2_precip" />
+
+    <TextView
+        android:id="@+id/day3_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/day2_temp"
+        app:layout_constraintTop_toBottomOf="@+id/day3_precip" />
+
+    <TextView
+        android:id="@+id/day4_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/day3_temp"
+        app:layout_constraintTop_toBottomOf="@+id/day4_precip" />
+
+    <TextView
+        android:id="@+id/day5_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/day4_temp"
+        app:layout_constraintTop_toBottomOf="@+id/day5_precip" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
