@@ -2,7 +2,7 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/rounded_corners_white"
+    android:background="@drawable/rounded_corners_blue"
     android:gravity="center"
     android:padding="5dp"
     android:textColor="#FFFFFF"
