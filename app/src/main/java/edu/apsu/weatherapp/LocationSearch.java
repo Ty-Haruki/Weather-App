@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static edu.apsu.weatherapp.ApiDownload.cities;
+
 public class LocationSearch extends AppCompatActivity {
     // Class for handling searching for and adding locations to user list
 
@@ -73,18 +75,17 @@ public class LocationSearch extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull WeatherViewHolder holder, int position) {
-            //holder.view.setText(meals.get(position).getName());
+            holder.view.setText(cities.get(position));
         }
 
         @Override
         public int getItemCount() {
-            //return meals.size();
-            return 0;
+            return cities.size();
         }
 
         @Override
         public void onClick(View view, int position) {
-            //Intent intent = new Intent(getApplicationContext(), WeatherInfoActivity.class);
+            //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             //startActivity(intent);
         }
     }

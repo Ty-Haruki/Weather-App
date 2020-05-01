@@ -22,10 +22,11 @@ import javax.net.ssl.HttpsURLConnection;
 
 import static edu.apsu.weatherapp.LocationSearch.context;
 
-public class ApiDownload extends AsyncTask<Void, Void, Void> {
+public class ApiDownload extends AsyncTask<Void, Void, ArrayList<String>> {
 
     private URL url;
     private String api_key = context.getResources().getString(R.string.api_key);
+    public static ArrayList<String> cities;
 
     public ApiDownload(String search_term) {
         Uri.Builder builder = Uri.parse("https://api.openweathermap.org/data/2.5/find?").buildUpon();
@@ -43,9 +44,9 @@ public class ApiDownload extends AsyncTask<Void, Void, Void> {
     }
 
     @Override
-    protected Void doInBackground(Void... voids) {
+    protected ArrayList<String> doInBackground(Void... voids) {
         StringBuilder json = new StringBuilder();
-        String result = null;
+        cities = new ArrayList<>();
 
         try {
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
@@ -69,7 +70,9 @@ public class ApiDownload extends AsyncTask<Void, Void, Void> {
                 String country = sys.getString("country");
 
                 Log.i("NAME", name + ", " + country);
+                cities.add(name + ", " + country);
             }
+
 
             connection.disconnect();
 
@@ -79,6 +82,14 @@ public class ApiDownload extends AsyncTask<Void, Void, Void> {
 
 
 
-        return null;
+        return cities;
+    }
+
+    @Override
+    protected void onPostExecute(ArrayList<String> s) {
+        cities = s;
+        LocationSearch.apiDownload = null;
+
+        LocationSearch.recyclerView.setAdapter(LocationSearch.weatherAdapter);
     }
 }
