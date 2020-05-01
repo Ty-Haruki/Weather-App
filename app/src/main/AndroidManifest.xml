@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CurrentDay"/>
+        <activity android:name=".LocationSearch"/>
     </application>
 
 </manifest>

@@ -4,288 +4,323 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A7FFEB"
+    android:background="#3949AB"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/location"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="15dp"
-        android:text="Chicago, IL, USA"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/date_time"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="Wed, April 29 8:15 PM"
-        android:textColor="#000000"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/rounded_corners_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/current_temp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        android:text="61° F"
-        android:textColor="#000000"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/date_time" />
+        <TextView
+            android:id="@+id/current_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="128dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:text="61° F"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/weather_desc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date_time"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/weather_desc"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="Sunny"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/current_temp" />
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="Chicago, IL, USA"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/day1_precip"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:gravity="center"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="5dp"
-        android:text="0%"
-        android:textColor="#000000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/day1_img" />
+        <ImageView
+            android:id="@+id/current_img"
+            android:layout_width="70dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="124dp"
+            android:padding="5dp"
+            app:layout_constraintBottom_toTopOf="@+id/weather_desc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date_time"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/sunny" />
 
-    <TextView
-        android:id="@+id/day2_precip"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:gravity="center"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="5dp"
-        android:text="0%"
-        android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/day1_precip"
-        app:layout_constraintTop_toBottomOf="@+id/day2_img" />
+        <TextView
+            android:id="@+id/date_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Wed, April 29 8:15 PM"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/location" />
 
-    <TextView
-        android:id="@+id/day3_precip"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:gravity="center"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="5dp"
-        android:text="0%"
-        android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/day2_precip"
-        app:layout_constraintTop_toBottomOf="@+id/day3_img" />
+        <TextView
+            android:id="@+id/weather_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Sunny"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/day4_precip"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:gravity="center"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="5dp"
-        android:text="0%"
-        android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/day3_precip"
-        app:layout_constraintTop_toBottomOf="@+id/day4_img" />
-
-    <TextView
-        android:id="@+id/day5_precip"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:gravity="center"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="5dp"
-        android:text="0%"
-        android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/day4_precip"
-        app:layout_constraintTop_toBottomOf="@+id/day5_img" />
-
-    <ImageView
-        android:id="@+id/day1_img"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="16dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weather_desc"
-        app:srcCompat="@drawable/sunny" />
-
-    <ImageView
-        android:id="@+id/day2_img"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="12dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        app:layout_constraintStart_toEndOf="@+id/day1_img"
-        app:layout_constraintTop_toBottomOf="@+id/weather_desc"
-        app:srcCompat="@drawable/sunny" />
-
-    <ImageView
-        android:id="@+id/day3_img"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="12dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        app:layout_constraintStart_toEndOf="@+id/day2_img"
-        app:layout_constraintTop_toBottomOf="@+id/weather_desc"
-        app:srcCompat="@drawable/sunny" />
-
-    <ImageView
-        android:id="@+id/day4_img"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="12dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        app:layout_constraintStart_toEndOf="@+id/day3_img"
-        app:layout_constraintTop_toTopOf="@+id/day3_img"
-        app:srcCompat="@drawable/sunny" />
-
-    <ImageView
-        android:id="@+id/day5_img"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="12dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        app:layout_constraintStart_toEndOf="@+id/day4_img"
-        app:layout_constraintTop_toTopOf="@+id/day3_img"
-        app:srcCompat="@drawable/sunny" />
-
-    <TextView
-        android:id="@+id/day1_temp"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:gravity="center"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="5dp"
-        android:text="40° F  57° F"
-        android:textColor="#000000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/day1_precip" />
-
-    <TextView
-        android:id="@+id/day2_temp"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:gravity="center"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="5dp"
-        android:text="40° F  57° F"
-        android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/day1_temp"
-        app:layout_constraintTop_toBottomOf="@+id/day2_precip" />
-
-    <TextView
-        android:id="@+id/day4_temp"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:gravity="center"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="5dp"
-        android:text="40° F  57° F"
-        android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/day3_temp"
-        app:layout_constraintTop_toBottomOf="@+id/day4_precip" />
-
-    <TextView
-        android:id="@+id/day5_temp"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:gravity="center"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="5dp"
-        android:text="40° F  57° F"
-        android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/day4_temp"
-        app:layout_constraintTop_toBottomOf="@+id/day5_precip" />
-
-    <TextView
-        android:id="@+id/day3_temp"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:gravity="center"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="5dp"
-        android:text="40° F  57° F"
-        android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/day2_temp"
-        app:layout_constraintTop_toBottomOf="@+id/day3_precip" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="65dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="140dp"
-        android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/weather_desc"
+        android:background="@drawable/rounded_corners_blue"
+        app:layout_constraintBottom_toTopOf="@+id/location_management"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_time"
-        app:srcCompat="@drawable/sunny" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/day1_temp"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:text="40° F  57° F"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/day1_precip" />
+
+        <TextView
+            android:id="@+id/day5_temp"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:text="40° F  57° F"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toEndOf="@+id/day4_temp"
+            app:layout_constraintTop_toBottomOf="@+id/day5_precip" />
+
+        <TextView
+            android:id="@+id/day3_precip"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:text="0%"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toEndOf="@+id/day2_precip"
+            app:layout_constraintTop_toBottomOf="@+id/day3_img" />
+
+        <TextView
+            android:id="@+id/day4_temp"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:text="40° F  57° F"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toEndOf="@+id/day3_temp"
+            app:layout_constraintTop_toBottomOf="@+id/day4_precip" />
+
+        <TextView
+            android:id="@+id/day2_precip"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:text="0%"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toEndOf="@+id/day1_precip"
+            app:layout_constraintTop_toBottomOf="@+id/day2_img" />
+
+        <TextView
+            android:id="@+id/day1_precip"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:text="0%"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/day1_img" />
+
+        <TextView
+            android:id="@+id/day2_temp"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:text="40° F  57° F"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toEndOf="@+id/day1_temp"
+            app:layout_constraintTop_toBottomOf="@+id/day2_precip" />
+
+        <TextView
+            android:id="@+id/day3_temp"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:text="40° F  57° F"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toEndOf="@+id/day2_temp"
+            app:layout_constraintTop_toBottomOf="@+id/day3_precip" />
+
+        <TextView
+            android:id="@+id/day4_precip"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:text="0%"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toEndOf="@+id/day3_precip"
+            app:layout_constraintTop_toBottomOf="@+id/day4_img" />
+
+        <TextView
+            android:id="@+id/day5_precip"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:text="0%"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toEndOf="@+id/day4_precip"
+            app:layout_constraintTop_toBottomOf="@+id/day5_img" />
+
+        <ImageView
+            android:id="@+id/day4_img"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="40dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:layout_constraintStart_toEndOf="@+id/day3_img"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/sunny" />
+
+        <ImageView
+            android:id="@+id/day1_img"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/sunny" />
+
+        <ImageView
+            android:id="@+id/day2_img"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="40dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:layout_constraintStart_toEndOf="@+id/day1_img"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/sunny" />
+
+        <ImageView
+            android:id="@+id/day5_img"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="40dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:layout_constraintStart_toEndOf="@+id/day4_img"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/sunny" />
+
+        <ImageView
+            android:id="@+id/day3_img"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="40dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:layout_constraintStart_toEndOf="@+id/day2_img"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/sunny" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/location_management"
+        style="@android:style/Widget.Holo.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="180dp"
+        android:background="@drawable/rounded_corners_blue"
         android:text="Manage Locations"
-        style="@android:style/Widget.Holo.Button"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/day3_temp" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
