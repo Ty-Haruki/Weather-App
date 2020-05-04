@@ -1,32 +1,37 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#55000000">
 
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:src="@drawable/sunny"/>
+        android:id="@+id/weatherImage"
+        android:layout_width="match_parent"
+        android:layout_height="424dp"
+        android:src="@drawable/sunny" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="000"
-        android:textSize="50sp"
-        android:textStyle="bold"/>
+        android:id="@+id/cityName"
+        android:layout_width="match_parent"
+        android:layout_height="146dp"
+        android:text="City"
+        android:textSize="60sp"
+        android:textAlignment="center"
+        />
 
-    <Button
-        android:id="@+id/actionButton"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="Refresh"/>
+
+
+    <TextView
+        android:id="@+id/degreesTV"
+        android:layout_width="match_parent"
+        android:layout_height="196dp"
+        android:text="TEMP"
+        android:textSize="80sp"
+        android:textAlignment="center"
+
+        />
+
+
 
 </LinearLayout>
