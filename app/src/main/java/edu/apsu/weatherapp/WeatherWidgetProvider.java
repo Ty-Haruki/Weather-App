@@ -7,29 +7,36 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class WeatherWidgetProvider extends AppWidgetProvider {
+
+    private ArrayList<String> cities;
 
 
     @Override
     public void onReceive(Context context, Intent intent) {
-
         super.onReceive(context, intent);
     }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         final int count = appWidgetIds.length;
+        setCities();
 
         for (int i = 0; i < count; i++) {
             int widgetId = appWidgetIds[i];
-            String degrees = String.format("%03d", (new Random().nextInt(100))+((char)176));
-            // change degrees to string to a getter method that gets degrees. Same with city
+            CityInfo info = new CityInfo("Chicago");
+            int degrees = info.getDegrees();
 
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
                     R.layout.widget_layout);
-            remoteViews.setTextViewText(R.id.degreesTV, degrees);
+            remoteViews.setTextViewText(R.id.degreesTV, Integer.toString(degrees));
+            remoteViews.setTextViewText(R.id.cityName, "Chicago");
 
             Intent intent = new Intent(context, WeatherWidgetProvider.class);
             intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
@@ -40,4 +47,21 @@ public class WeatherWidgetProvider extends AppWidgetProvider {
             appWidgetManager.updateAppWidget(widgetId, remoteViews);
         }
     }
+
+    private void setCities()  {
+        Scanner scan = null;
+        try {
+            scan = new Scanner(new File("cities.txt"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        cities = new ArrayList<>();
+        if(!scan.hasNextLine()){
+            cities.add("Chicago");
+        }
+        while(scan.hasNextLine()){
+            cities.add(scan.nextLine());
+        }
+    }
+
 }
