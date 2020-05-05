@@ -14,21 +14,19 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.net.ssl.HttpsURLConnection;
 
 import static edu.apsu.weatherapp.LocationSearch.context;
 
-public class ApiDownload extends AsyncTask<Void, Void, ArrayList<String>> {
+public class FindCity extends AsyncTask<Void, Void, ArrayList<String>> {
 
     private URL url;
     private String api_key = context.getResources().getString(R.string.api_key);
     public static ArrayList<String> cities;
 
-    public ApiDownload(String search_term) {
+    public FindCity(String search_term) {
         Uri.Builder builder = Uri.parse("https://api.openweathermap.org/data/2.5/find?").buildUpon();
         builder.appendQueryParameter("q", search_term);
         builder.appendQueryParameter("cnt", "15");
@@ -88,7 +86,7 @@ public class ApiDownload extends AsyncTask<Void, Void, ArrayList<String>> {
     @Override
     protected void onPostExecute(ArrayList<String> s) {
         cities = s;
-        LocationSearch.apiDownload = null;
+        LocationSearch.findCity = null;
 
         LocationSearch.recyclerView.setAdapter(LocationSearch.weatherAdapter);
     }

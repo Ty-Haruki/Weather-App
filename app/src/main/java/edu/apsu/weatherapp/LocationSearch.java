@@ -3,7 +3,6 @@ package edu.apsu.weatherapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,14 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static edu.apsu.weatherapp.ApiDownload.cities;
+import static edu.apsu.weatherapp.FindCity.cities;
 
 public class LocationSearch extends AppCompatActivity {
     // Class for handling searching for and adding locations to user list
 
     public static Context context;
     public static RecyclerView recyclerView;
-    public static ApiDownload apiDownload;
+    public static FindCity findCity;
     public static WeatherAdapter weatherAdapter;
 
     @Override
@@ -47,7 +46,7 @@ public class LocationSearch extends AppCompatActivity {
 
                         EditText editText = findViewById(R.id.search_location);
                         String search_term = editText.getText().toString();
-                        apiDownload = (ApiDownload) new ApiDownload(search_term).execute();
+                        findCity = (FindCity) new FindCity(search_term).execute();
                     }
                 }
                 return false;
@@ -85,8 +84,8 @@ public class LocationSearch extends AppCompatActivity {
 
         @Override
         public void onClick(View view, int position) {
-            //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), LocationDetails.class);
+            startActivity(intent);
         }
     }
 
