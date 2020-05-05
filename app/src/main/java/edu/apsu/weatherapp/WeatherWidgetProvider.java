@@ -1,14 +1,17 @@
 package edu.apsu.weatherapp;
 
+import android.app.Application;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.widget.RemoteViews;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -51,16 +54,17 @@ public class WeatherWidgetProvider extends AppWidgetProvider {
     private void setCities()  {
         Scanner scan = null;
         try {
-            scan = new Scanner(new File("defaultCity.txt"));
+            scan = new Scanner(new File("res/raw/defaultcity.txt"));
+            if(!scan.hasNextLine()){
+                defaultCity = (4859268);
+            }
+            else{
+                defaultCity = (Integer.getInteger(scan.nextLine()));
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        if(!scan.hasNextLine()){
-            defaultCity = (4859268);
-        }
-        else{
-            defaultCity = (Integer.getInteger(scan.nextLine()));
-        }
+
     }
 
 }

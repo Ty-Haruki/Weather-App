@@ -105,7 +105,7 @@ public class SavedCities extends Activity implements View.OnClickListener {
     private void setCities()  {
         Scanner scan = null;
         try {
-            scan = new Scanner(new File("cities.txt"));
+            scan = new Scanner(new File("raw/cities.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -121,7 +121,7 @@ public class SavedCities extends Activity implements View.OnClickListener {
     private void setDefaultCity()  {
         Scanner scan = null;
         try {
-            scan = new Scanner(new File("defaultCity.txt"));
+            scan = new Scanner(new File("raw/defaultcity.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -158,7 +158,7 @@ public class SavedCities extends Activity implements View.OnClickListener {
                     // rewrite file with new items
                     PrintWriter pw;
                     try {
-                        pw = new PrintWriter(new File("cities.txt"));
+                        pw = new PrintWriter(new File("raw/cities.txt"));
                         pw.write("");
                         for(int j = 0; j < cities.size(); j++){
                             pw.append(cities.get(j).toString());
@@ -177,7 +177,7 @@ public class SavedCities extends Activity implements View.OnClickListener {
                     if(defaultDeleted){
                         defaultCity = cities.get(0);
                         try {
-                            pw = new PrintWriter(new File("defaultCity.txt"));
+                            pw = new PrintWriter(new File("raw/defaultcity.txt"));
                             pw.write(defaultCity);
                             pw.close();
                         } catch (FileNotFoundException e) {
@@ -217,7 +217,7 @@ public class SavedCities extends Activity implements View.OnClickListener {
                     defaultCity = cities.get(listView.getCheckedItemPosition());
                     PrintWriter pw;
                     try {
-                        pw = new PrintWriter(new File("defaultCity.txt"));
+                        pw = new PrintWriter(new File("raw/defaultcity.txt"));
                         pw.write(defaultCity);
                         pw.close();
                     } catch (FileNotFoundException e) {
