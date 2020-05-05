@@ -30,7 +30,14 @@ public class WeatherWidgetProvider extends AppWidgetProvider {
 
         for (int i = 0; i < count; i++) {
             int widgetId = appWidgetIds[i];
-            CityInfo info = new CityInfo("Chicago");
+            String city;
+            try{
+                city = cities.get(i);
+            }
+            catch (Exception e){
+                city = cities.get(0);
+            }
+            CityInfo info = new CityInfo(city);
             int degrees = info.getDegrees();
 
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
