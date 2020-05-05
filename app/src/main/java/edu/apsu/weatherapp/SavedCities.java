@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -155,12 +156,32 @@ public class SavedCities extends Activity implements View.OnClickListener {
                     adapter.notifyItemChanged(listView.getCheckedItemPosition());
                     adapter.notifyItemRangeChanged(listView.getCheckedItemPosition(), cities.size());
                     // rewrite file with new items
+                    PrintWriter pw;
+                    try {
+                        pw = new PrintWriter(new File("cities.txt"));
+                        pw.write("");
+                        for(int j = 0; j < cities.size(); j++){
+                            pw.append(cities.get(j).toString());
+                        }
+                        pw.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     boolean defaultDeleted = true;
                     for(int j = 0; j < cities.size(); j++){
                         if(cities.get(j) == defaultCity){
-                            defaultCity = cities.get(0);
-                            // rewrite default city value
+                            defaultDeleted = false;
                             break;
+                        }
+                    }
+                    if(defaultDeleted){
+                        defaultCity = cities.get(0);
+                        try {
+                            pw = new PrintWriter(new File("defaultCity.txt"));
+                            pw.write(defaultCity);
+                            pw.close();
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
                         }
                     }
 
@@ -194,7 +215,14 @@ public class SavedCities extends Activity implements View.OnClickListener {
                 public void onClick(DialogInterface dialogInterface, int i) {
                     ListView listView = ((AlertDialog) dialogInterface).getListView();
                     defaultCity = cities.get(listView.getCheckedItemPosition());
-                    // rewrite file with new default city
+                    PrintWriter pw;
+                    try {
+                        pw = new PrintWriter(new File("defaultCity.txt"));
+                        pw.write(defaultCity);
+                        pw.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
 
