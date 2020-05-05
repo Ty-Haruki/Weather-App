@@ -42,8 +42,8 @@ public class WeatherWidgetProvider extends AppWidgetProvider {
 
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
                     R.layout.widget_layout);
-            //remoteViews.setTextViewText(R.id.degreesTV, Integer.toString(degrees));
-            remoteViews.setTextViewText(R.id.cityName, "Clarksville, TN, US");
+            //remoteViews.setTextViewText(R.id.degreesTV, Integer.toString(degrees));// change to city get degrees
+            //remoteViews.setTextViewText(R.id.cityName, "Clarksville, TN, US");// change to city get cityName
 
             Intent intent = new Intent(context, WeatherWidgetProvider.class);
             intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
