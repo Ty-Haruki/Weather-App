@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public class WeatherWidgetProvider extends AppWidgetProvider {
 
-    private ArrayList<Integer> cities;
+    private int defaultCity;
 
 
     @Override
@@ -30,13 +30,6 @@ public class WeatherWidgetProvider extends AppWidgetProvider {
 
         for (int i = 0; i < count; i++) {
             int widgetId = appWidgetIds[i];
-            int city;
-            try{
-                city = cities.get(i);
-            }
-            catch (Exception e){
-                city = cities.get(0);
-            }
             //CityInfo info = new CityInfo(city);
             //int degrees = info.getDegrees();
 
@@ -58,16 +51,15 @@ public class WeatherWidgetProvider extends AppWidgetProvider {
     private void setCities()  {
         Scanner scan = null;
         try {
-            scan = new Scanner(new File("cities.txt"));
+            scan = new Scanner(new File("defaultCity.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        cities = new ArrayList<>();
         if(!scan.hasNextLine()){
-            cities.add(4859268);
+            defaultCity = (4859268);
         }
-        while(scan.hasNextLine()){
-            cities.add(Integer.getInteger(scan.nextLine()));
+        else{
+            defaultCity = (Integer.getInteger(scan.nextLine()));
         }
     }
 

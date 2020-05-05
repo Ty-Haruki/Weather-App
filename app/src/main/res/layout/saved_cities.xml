@@ -17,10 +17,20 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/defaultButton"
+        android:layout_width="389dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="72dp"
+        android:text="Set Widget City"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/savedRV"
-        android:layout_width="408dp"
-        android:layout_height="640dp"
+        android:layout_width="403dp"
+        android:layout_height="487dp"
         app:layout_constraintBottom_toTopOf="@+id/deleteButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
