@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public class WeatherWidgetProvider extends AppWidgetProvider {
 
-    private ArrayList<String> cities;
+    private ArrayList<Integer> cities;
 
 
     @Override
@@ -30,20 +30,20 @@ public class WeatherWidgetProvider extends AppWidgetProvider {
 
         for (int i = 0; i < count; i++) {
             int widgetId = appWidgetIds[i];
-            String city;
+            int city;
             try{
                 city = cities.get(i);
             }
             catch (Exception e){
                 city = cities.get(0);
             }
-            CityInfo info = new CityInfo(city);
-            int degrees = info.getDegrees();
+            //CityInfo info = new CityInfo(city);
+            //int degrees = info.getDegrees();
 
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
                     R.layout.widget_layout);
-            remoteViews.setTextViewText(R.id.degreesTV, Integer.toString(degrees));
-            remoteViews.setTextViewText(R.id.cityName, "Chicago");
+            //remoteViews.setTextViewText(R.id.degreesTV, Integer.toString(degrees));
+            remoteViews.setTextViewText(R.id.cityName, "Clarksville, TN, US");
 
             Intent intent = new Intent(context, WeatherWidgetProvider.class);
             intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
@@ -64,10 +64,10 @@ public class WeatherWidgetProvider extends AppWidgetProvider {
         }
         cities = new ArrayList<>();
         if(!scan.hasNextLine()){
-            cities.add("Chicago");
+            cities.add(4859268);
         }
         while(scan.hasNextLine()){
-            cities.add(scan.nextLine());
+            cities.add(Integer.getInteger(scan.nextLine()));
         }
     }
 
