@@ -107,7 +107,6 @@ public class CityInfo extends AsyncTask<Void, Void, ArrayList<String>> {
                     weather_main[0] = weather.getString("main");
                     wind_speed[0] = wind.getDouble("speed");
                     wind_direction[0] = wind.getInt("deg");
-                    Log.i("TEST", date[0] + ", " + temp[0] + ", " + feels_like[0] + ", " + humidity[0] + ", " + weather_main[0] + ", " + wind_speed[0] + ", " + wind_direction[0]);
                 }
                 if (item.getString("dt_txt").contains("00:00:00") && count < 5) {
                     date[count] = item.getString("dt_txt");
@@ -118,7 +117,6 @@ public class CityInfo extends AsyncTask<Void, Void, ArrayList<String>> {
                     weather_main[count] = weather.getString("main");
                     wind_speed[count] = wind.getDouble("speed");
                     wind_direction[count] = wind.getInt("deg");
-                    Log.i(name + " " + country, date[count] + ", " + temp[count] + ", " + feels_like[count] + ", " + humidity[count] + ", " + weather_main[count] + ", " + wind_speed[count] + ", " + wind_direction[count]);
                     count++;
                 }
             }
@@ -134,5 +132,30 @@ public class CityInfo extends AsyncTask<Void, Void, ArrayList<String>> {
     @Override
     protected void onPostExecute(ArrayList<String> strings) {
         return;
+    }
+
+    public int setPic(int i, CityInfo cityInfo){
+
+        String[] condition = cityInfo.weather_main;
+        if(condition[i].equals("Thunderstorm")){
+            return R.drawable.thunderstorm;
+        }
+        else if(condition[i].equals("Drizzle")){
+            return R.drawable.cloudy_with_showers;
+        }
+        else if(condition[i].equals("Rain")){
+            return R.drawable.cloudy_with_showers;
+        }
+        else if(condition[i].equals("Snow")){
+            return R.drawable.snow;
+        }
+        else if(condition[i].equals("Clear")){
+            return R.drawable.sunny;
+        }
+        else if(condition[i].equals("Clouds")){
+            return R.drawable.cloudy;
+        }
+
+        return R.drawable.sunny;
     }
 }

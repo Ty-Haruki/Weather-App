@@ -3,8 +3,8 @@ package edu.apsu.weatherapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,17 +19,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -62,7 +56,6 @@ public class SavedCities extends Activity implements View.OnClickListener {
     @Override
     protected void onStart() {
         super.onStart();
-
     }
 
     @Override
@@ -75,39 +68,55 @@ public class SavedCities extends Activity implements View.OnClickListener {
         }
     }
 
-    public class CityAdapter extends RecyclerView.Adapter<CityViewHolder>{
+    interface RecyclerViewClickListener {
+        void onClick(View view, int position);
+    }
+
+    public class CityAdapter extends RecyclerView.Adapter<CityViewHolder>
+            implements RecyclerViewClickListener, LocationSearch.RecyclerViewClickListener {
 
         @NonNull
         @Override
         public CityViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             TextView textView = (TextView) LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_view, parent, false);
-            CityViewHolder viewHolder = new CityViewHolder(textView);
+            CityViewHolder viewHolder = new CityViewHolder(textView, this);
             return viewHolder;
         }
 
         @Override
         public void onBindViewHolder(@NonNull CityViewHolder holder, int position) {
-            holder.getView().setText(cities.get(position).name+"   "+cities.get(position).temp[0]+"°");
+            holder.view.setText(cities.get(position).name+"   "+cities.get(position).temp[0]+"°");
         }
 
         @Override
         public int getItemCount() {
             return cities.size();
         }
+
+        @Override
+        public void onClick(View view, int position) {
+            Intent intent = new Intent(getApplicationContext(), LocationDetails.class);
+            intent.putExtra("CITY_ID", cities.get(position).city_id);
+            startActivity(intent);
+        }
     }
 
     public class CityViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView view;
+        public TextView view;
+        public LocationSearch.RecyclerViewClickListener listener;
 
-        public CityViewHolder(@NonNull TextView itemView) {
-            super(itemView);
-            this.view = itemView;
-        }
-
-        public TextView getView(){
-            return view;
+        public CityViewHolder(final TextView view, final CityAdapter listener) {
+            super(view);
+            this.view = view;
+            this.listener = listener;
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onClick(view, getAdapterPosition());
+                }
+            });
         }
     }
 
@@ -230,7 +239,6 @@ public class SavedCities extends Activity implements View.OnClickListener {
                             e.printStackTrace();
                         }
                     }
-
                 }
             });
 
@@ -282,5 +290,29 @@ public class SavedCities extends Activity implements View.OnClickListener {
             AlertDialog dialog = builder.create();
             dialog.show();
         }
+    }
+
+    public int getDefault(Context context) {
+        Scanner scan = null;
+        int defaultCity = -1;
+        String approved = "";
+        String buffer;
+        FileInputStream fi;
+        try {
+            fi = context.openFileInput("defaultcity.txt");
+            scan = new Scanner(fi);
+            buffer = (scan.nextLine());
+            for(int i = 0; i < buffer.length(); i++){
+                if(Character.isDigit(buffer.charAt(i))){
+                    approved += buffer.charAt(i);
+                }
+            }
+            scan.close();
+            fi.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        defaultCity = Integer.valueOf(approved);
+        return defaultCity;
     }
 }

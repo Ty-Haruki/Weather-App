@@ -3,8 +3,9 @@
     android:layout_width="360dp"
     android:layout_height="380dp"
     android:padding="@dimen/widget_margin"
+    android:alpha=".8"
     android:id="@+id/widlay"
-    android:background="#77000000">
+    android:background="@drawable/rounded_corners_blue">
 
 
     <ImageView
@@ -19,6 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:text="City"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
         android:textAlignment="center"
         android:textSize="30sp" />
 
@@ -27,6 +30,8 @@
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:text="TEMP"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
         android:textAlignment="center"
         android:textSize="60sp"
 
