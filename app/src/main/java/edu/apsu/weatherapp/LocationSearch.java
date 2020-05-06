@@ -54,6 +54,14 @@ public class LocationSearch extends AppCompatActivity {
 
 
         });
+
+        findViewById(R.id.saved_locations).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SavedCities.class);
+                startActivity(intent);
+            }
+        });
     }
 
     interface RecyclerViewClickListener {
@@ -74,7 +82,7 @@ public class LocationSearch extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull WeatherViewHolder holder, int position) {
-            holder.view.setText(cities.get(position));
+            holder.view.setText(cities.get(position).getCity_location_name());
         }
 
         @Override
@@ -85,6 +93,7 @@ public class LocationSearch extends AppCompatActivity {
         @Override
         public void onClick(View view, int position) {
             Intent intent = new Intent(getApplicationContext(), LocationDetails.class);
+            intent.putExtra("CITY_ID", cities.get(position).getCity_id());
             startActivity(intent);
         }
     }
