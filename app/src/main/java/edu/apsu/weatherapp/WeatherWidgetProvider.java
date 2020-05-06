@@ -13,9 +13,15 @@ import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintStream;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -61,19 +67,52 @@ public class WeatherWidgetProvider extends AppWidgetProvider {
     }
 
     private int setCities(Context context)  {
-        BufferedReader scan = null;
+        File defaultfile = new File(context.getFilesDir(), "defaultcity.txt");
+        File cityfile = new File(context.getFilesDir(), "cities.txt");
+        if (!defaultfile.exists()) {
+            Log.i("new file", "new file");
+            try {
+                FileOutputStream fo = context.openFileOutput("defaultcity.txt", Context.MODE_PRIVATE);
+                PrintStream ps = new PrintStream(fo);
+                ps.println("4613868");
+                ps.close();
+                fo.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if(!cityfile.exists()){
+            Log.i("new file", "new file");
+            try {
+                FileOutputStream fo = context.openFileOutput("cities.txt", Context.MODE_PRIVATE);
+                PrintStream ps = new PrintStream(fo);
+                ps.println(4613868);
+                ps.close();
+                fo.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        FileInputStream fi;
         int defaultCity = -1;
         String approved = "";
         String buffer;
         try {
-            scan = new BufferedReader(new InputStreamReader((context.getAssets().open("defaultcity.txt"))));
-            buffer = (scan.readLine());
+            fi = context.openFileInput("cities.txt");
+            Scanner isr =  new Scanner(fi);
+            buffer = (isr.nextLine());
             for(int i = 0; i < buffer.length(); i++){
                 if(Character.isDigit(buffer.charAt(i))){
                     approved += buffer.charAt(i);
                 }
             }
-            scan.close();
+            isr.close();
+            fi.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,6 +1,7 @@
 package edu.apsu.weatherapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,9 +21,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -38,7 +42,7 @@ public class SavedCities extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setCities();
+        setCities(getApplicationContext());
         defaultCity = setDefaultCity();
         setContentView(R.layout.saved_cities);
         deleteButton = findViewById(R.id.deleteButton);
@@ -105,13 +109,13 @@ public class SavedCities extends Activity implements View.OnClickListener {
         }
     }
 
-    private void setCities()  {
+    private void setCities(Context context)  {
         cities = new ArrayList<>();
         BufferedReader scan = null;
         String approved = "";
         String buffer = "";
         try {
-            scan = new BufferedReader(new InputStreamReader(getAssets().open("cities.txt")));
+            scan = new BufferedReader(new FileReader("cities.txt"));
             while((buffer = (scan.readLine())) != null){
                 for(int i = 0; i < buffer.length(); i++){
                     if(Character.isDigit(buffer.charAt(i))){
@@ -141,7 +145,7 @@ public class SavedCities extends Activity implements View.OnClickListener {
         String approved = "";
         String buffer;
         try {
-            scan = new BufferedReader(new InputStreamReader((getAssets().open("defaultcity.txt"))));
+            scan = new BufferedReader(new FileReader("defaultcity.txt"));
             buffer = (scan.readLine());
             for(int i = 0; i < buffer.length(); i++){
                 if(Character.isDigit(buffer.charAt(i))){
@@ -179,14 +183,14 @@ public class SavedCities extends Activity implements View.OnClickListener {
                     adapter.notifyItemChanged(listView.getCheckedItemPosition());
                     adapter.notifyItemRangeChanged(listView.getCheckedItemPosition(), cities.size());
                     // rewrite file with new items
-                    PrintWriter pw;
+                    OutputStreamWriter outputStreamWriter;
                     try {
-                        pw = new PrintWriter(String.valueOf(getAssets().open("cities.txt")));
-                        pw.write("");
+                        outputStreamWriter = new OutputStreamWriter(getApplicationContext().openFileOutput("cities.txt", Context.MODE_PRIVATE));
+                        outputStreamWriter.write("");
                         for(int j = 0; j < cities.size(); j++){
-                            pw.append(cities.get(j).toString()+"\n");
+                            outputStreamWriter.append(cities.get(j).city_id+"\n");
                         }
-                        pw.close();
+                        outputStreamWriter.close();
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
@@ -202,9 +206,9 @@ public class SavedCities extends Activity implements View.OnClickListener {
                     if(defaultDeleted){
                         defaultCity = cities.get(0);
                         try {
-                            pw = new PrintWriter(String.valueOf(getAssets().open("defaultcity.txt")));
-                            pw.write(defaultCity.city_id);
-                            pw.close();
+                            outputStreamWriter = new OutputStreamWriter(getApplicationContext().openFileOutput("defaultcity.txt", Context.MODE_PRIVATE));
+                            outputStreamWriter.write(defaultCity.city_id);
+                            outputStreamWriter.close();
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
                         } catch (IOException e) {
