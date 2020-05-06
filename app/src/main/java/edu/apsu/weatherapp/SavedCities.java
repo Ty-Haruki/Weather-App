@@ -23,10 +23,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -43,7 +45,7 @@ public class SavedCities extends Activity implements View.OnClickListener {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setCities(getApplicationContext());
-        defaultCity = setDefaultCity();
+        defaultCity = setDefaultCity(getApplicationContext());
         setContentView(R.layout.saved_cities);
         deleteButton = findViewById(R.id.deleteButton);
         deleteButton.setOnClickListener(this);
@@ -86,7 +88,7 @@ public class SavedCities extends Activity implements View.OnClickListener {
 
         @Override
         public void onBindViewHolder(@NonNull CityViewHolder holder, int position) {
-            holder.getView().setText(cities.get(position).name);
+            holder.getView().setText(cities.get(position).name+"   "+cities.get(position).temp[0]+"°");
         }
 
         @Override
@@ -111,12 +113,15 @@ public class SavedCities extends Activity implements View.OnClickListener {
 
     private void setCities(Context context)  {
         cities = new ArrayList<>();
-        BufferedReader scan = null;
+        FileInputStream fi;
+        Scanner scan = null;
         String approved = "";
         String buffer = "";
         try {
-            scan = new BufferedReader(new FileReader("cities.txt"));
-            while((buffer = (scan.readLine())) != null){
+            fi = context.openFileInput("cities.txt");
+            scan = new Scanner(fi);
+            while(scan.hasNextLine()){
+                buffer = (scan.nextLine());
                 for(int i = 0; i < buffer.length(); i++){
                     if(Character.isDigit(buffer.charAt(i))){
                         approved += buffer.charAt(i);
@@ -131,28 +136,32 @@ public class SavedCities extends Activity implements View.OnClickListener {
                     e.printStackTrace();
                 }
                 approved="";
-                buffer = "";
+                buffer = null;
             }
             scan.close();
+            fi.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private CityInfo setDefaultCity()  {
-        BufferedReader scan = null;
+    private CityInfo setDefaultCity(Context context)  {
+        Scanner scan = null;
         int defaultCity = -1;
         String approved = "";
         String buffer;
+        FileInputStream fi;
         try {
-            scan = new BufferedReader(new FileReader("defaultcity.txt"));
-            buffer = (scan.readLine());
+            fi = context.openFileInput("defaultcity.txt");
+            scan = new Scanner(fi);
+            buffer = (scan.nextLine());
             for(int i = 0; i < buffer.length(); i++){
                 if(Character.isDigit(buffer.charAt(i))){
                     approved += buffer.charAt(i);
                 }
             }
             scan.close();
+            fi.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -183,14 +192,16 @@ public class SavedCities extends Activity implements View.OnClickListener {
                     adapter.notifyItemChanged(listView.getCheckedItemPosition());
                     adapter.notifyItemRangeChanged(listView.getCheckedItemPosition(), cities.size());
                     // rewrite file with new items
-                    OutputStreamWriter outputStreamWriter;
                     try {
-                        outputStreamWriter = new OutputStreamWriter(getApplicationContext().openFileOutput("cities.txt", Context.MODE_PRIVATE));
-                        outputStreamWriter.write("");
+                        FileOutputStream fo = getApplicationContext().openFileOutput("cities.txt", Context.MODE_PRIVATE);
+                        PrintStream ps = new PrintStream(fo);
+
                         for(int j = 0; j < cities.size(); j++){
-                            outputStreamWriter.append(cities.get(j).city_id+"\n");
+                            ps.println((cities.get(j).city_id));
                         }
-                        outputStreamWriter.close();
+                        ps.close();
+                        fo.close();
+
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
@@ -206,9 +217,13 @@ public class SavedCities extends Activity implements View.OnClickListener {
                     if(defaultDeleted){
                         defaultCity = cities.get(0);
                         try {
-                            outputStreamWriter = new OutputStreamWriter(getApplicationContext().openFileOutput("defaultcity.txt", Context.MODE_PRIVATE));
-                            outputStreamWriter.write(defaultCity.city_id);
-                            outputStreamWriter.close();
+                            FileOutputStream fo = getApplicationContext().openFileOutput("defaultcity.txt", Context.MODE_PRIVATE);
+                            PrintStream ps = new PrintStream(fo);
+                            ps.println((defaultCity.city_id));
+
+                            ps.close();
+                            fo.close();
+
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
                         } catch (IOException e) {
@@ -246,11 +261,14 @@ public class SavedCities extends Activity implements View.OnClickListener {
                 public void onClick(DialogInterface dialogInterface, int i) {
                     ListView listView = ((AlertDialog) dialogInterface).getListView();
                     defaultCity = cities.get(listView.getCheckedItemPosition());
-                    PrintWriter pw;
                     try {
-                        pw = new PrintWriter(String.valueOf(getAssets().open("defaultcity.txt")));
-                        pw.write(defaultCity.city_id);
-                        pw.close();
+                        FileOutputStream fo = getApplicationContext().openFileOutput("defaultcity.txt", Context.MODE_PRIVATE);
+                        PrintStream ps = new PrintStream(fo);
+                        ps.println((defaultCity.city_id));
+
+                        ps.close();
+                        fo.close();
+
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     } catch (IOException e) {

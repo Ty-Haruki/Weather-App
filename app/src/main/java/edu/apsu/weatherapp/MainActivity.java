@@ -89,7 +89,8 @@ public class MainActivity extends AppCompatActivity {
             try {
                 FileOutputStream fo = getApplicationContext().openFileOutput("cities.txt", Context.MODE_PRIVATE);
                 PrintStream ps = new PrintStream(fo);
-                ps.println(4613868);
+                ps.println("4613868");
+                ps.println("2643743");
                 ps.close();
                 fo.close();
             } catch (FileNotFoundException e) {

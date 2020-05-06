@@ -103,7 +103,7 @@ public class WeatherWidgetProvider extends AppWidgetProvider {
         String approved = "";
         String buffer;
         try {
-            fi = context.openFileInput("cities.txt");
+            fi = context.openFileInput("defaultcity.txt");
             Scanner isr =  new Scanner(fi);
             buffer = (isr.nextLine());
             for(int i = 0; i < buffer.length(); i++){
