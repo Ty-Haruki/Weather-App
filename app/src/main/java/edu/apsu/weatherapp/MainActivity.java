@@ -15,11 +15,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         // Set ID based on Saved City
         CityInfo cityInfo = new CityInfo(4613868, getApplicationContext());
         cityInfo.execute();
 
-        // Wait for CityInfo to finish
+        // Wait for Ci.tyInfo to finish
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
