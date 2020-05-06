@@ -39,15 +39,16 @@
         android:layout_width="389dp"
         android:layout_height="44dp"
         android:layout_marginBottom="4dp"
-        android:text="Delete"
         android:background="@drawable/rounded_corners_blue"
         android:elevation="5dp"
+        android:text="Delete"
         android:textColor="#FFFFFF"
         android:textColorHighlight="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/defaultButton" />
 
     <Button
         android:id="@+id/defaultButton"
