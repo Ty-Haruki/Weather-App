@@ -34,6 +34,7 @@ public class SavedCities extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.saved_cities);
         setCities();
         setDefaultCity();
         setContentView(R.layout.saved_cities);
@@ -106,15 +107,15 @@ public class SavedCities extends Activity implements View.OnClickListener {
         Scanner scan = null;
         try {
             scan = new Scanner(new File("raw/cities.txt"));
+            cities = new ArrayList<>();
+            if(!scan.hasNextLine()){
+                cities.add(4859268);
+            }
+            while(scan.hasNextLine()){
+                cities.add(Integer.getInteger(scan.nextLine()));
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-        cities = new ArrayList<>();
-        if(!scan.hasNextLine()){
-            cities.add(4859268);
-        }
-        while(scan.hasNextLine()){
-            cities.add(Integer.getInteger(scan.nextLine()));
         }
     }
 
@@ -122,14 +123,15 @@ public class SavedCities extends Activity implements View.OnClickListener {
         Scanner scan = null;
         try {
             scan = new Scanner(new File("raw/defaultcity.txt"));
+
+            if(!scan.hasNextLine()){
+                defaultCity = (4859268);
+            }
+            else{
+                defaultCity = (Integer.getInteger(scan.nextLine()));
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-        if(!scan.hasNextLine()){
-            defaultCity = (4859268);
-        }
-        else{
-            defaultCity = (Integer.getInteger(scan.nextLine()));
         }
     }
 

@@ -54,6 +54,14 @@ public class LocationSearch extends AppCompatActivity {
 
 
         });
+
+        findViewById(R.id.saved_locations).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SavedCities.class);
+                startActivity(intent);
+            }
+        });
     }
 
     interface RecyclerViewClickListener {

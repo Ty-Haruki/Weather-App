@@ -2,6 +2,7 @@ package edu.apsu.weatherapp;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,6 +19,12 @@ public class LocationDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.current_day_layout);
         id = getIntent().getIntExtra("CITY_ID", 0);
+
+        // For Homescreen Details
+        if (id == 0) {
+            // id = SavedCities.getDefaultCity();
+        }
+
         context = getApplicationContext();
 
         cityInfo = (CityInfo) new CityInfo(id, getApplicationContext()).execute();
