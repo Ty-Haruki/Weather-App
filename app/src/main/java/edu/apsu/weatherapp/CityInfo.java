@@ -25,6 +25,8 @@ public class CityInfo extends AsyncTask<Void, Void, ArrayList<String>> {
     private URL url;
     private String api_key;
 
+    public int city_id;
+
     // Info
     public String name, country;
 
@@ -42,6 +44,7 @@ public class CityInfo extends AsyncTask<Void, Void, ArrayList<String>> {
     public int[] wind_direction;
 
     public CityInfo(int city_id, Context context) {
+        this.city_id = city_id;
         api_key = context.getResources().getString(R.string.api_key);
         Uri.Builder builder = Uri.parse("https://api.openweathermap.org/data/2.5/forecast?").buildUpon();
         builder.appendQueryParameter("id", String.valueOf(city_id));

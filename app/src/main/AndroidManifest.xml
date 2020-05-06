@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".LocationDetails"/>
         <activity android:name=".LocationSearch"/>
+        <activity android:name=".SavedCities"/>
         <receiver android:name="WeatherWidgetProvider" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
