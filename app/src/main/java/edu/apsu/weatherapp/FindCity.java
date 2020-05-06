@@ -20,17 +20,16 @@ import javax.net.ssl.HttpsURLConnection;
 
 import static edu.apsu.weatherapp.LocationSearch.context;
 
-public class FindCity extends AsyncTask<Void, Void, ArrayList<String>> {
+public class FindCity extends AsyncTask<Void, Void, ArrayList<City>> {
 
     private URL url;
     private String api_key = context.getResources().getString(R.string.api_key);
-    public static ArrayList<String> cities;
+    public static ArrayList<City> cities;
 
     public FindCity(String search_term) {
         Uri.Builder builder = Uri.parse("https://api.openweathermap.org/data/2.5/find?").buildUpon();
         builder.appendQueryParameter("q", search_term);
         builder.appendQueryParameter("cnt", "15");
-        //builder.appendQueryParameter("units", "imperial");
         builder.appendQueryParameter("appid", api_key);
 
         try {
@@ -42,7 +41,7 @@ public class FindCity extends AsyncTask<Void, Void, ArrayList<String>> {
     }
 
     @Override
-    protected ArrayList<String> doInBackground(Void... voids) {
+    protected ArrayList<City> doInBackground(Void... voids) {
         StringBuilder json = new StringBuilder();
         cities = new ArrayList<>();
 
@@ -66,11 +65,11 @@ public class FindCity extends AsyncTask<Void, Void, ArrayList<String>> {
 
                 JSONObject sys = item.getJSONObject("sys");
                 String country = sys.getString("country");
-
+                int city_id = item.getInt("id");
                 Log.i("NAME", name + ", " + country);
-                cities.add(name + ", " + country);
+                City city = new City(city_id, name + ", " + country);
+                cities.add(city);
             }
-
 
             connection.disconnect();
 
@@ -78,13 +77,11 @@ public class FindCity extends AsyncTask<Void, Void, ArrayList<String>> {
             e.printStackTrace();
         }
 
-
-
         return cities;
     }
 
     @Override
-    protected void onPostExecute(ArrayList<String> s) {
+    protected void onPostExecute(ArrayList<City> s) {
         cities = s;
         LocationSearch.findCity = null;
 

@@ -232,4 +232,16 @@ public class SavedCities extends Activity implements View.OnClickListener {
             dialog.show();
         }
     }
+
+    public void addCity(int id) {
+        PrintWriter pw;
+        try {
+            pw = new PrintWriter(new File("raw/cities.txt"));
+            pw.write("");
+            pw.append(String.valueOf(id));
+            pw.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

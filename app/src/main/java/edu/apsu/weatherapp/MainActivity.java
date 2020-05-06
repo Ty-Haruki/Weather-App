@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         CityInfo cityInfo = new CityInfo(4613868, getApplicationContext());
         cityInfo.execute();
 
-        // Wait for Ci.tyInfo to finish
+        // Wait for CityInfo to finish
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
