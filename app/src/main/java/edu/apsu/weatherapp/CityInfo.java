@@ -35,6 +35,7 @@ public class CityInfo extends AsyncTask<Void, Void, ArrayList<String>> {
 
     // Weather Condition
     public String[] weather_desc;
+    public String[] weather_main;
 
     // Wind
     public double[] wind_speed;
@@ -54,6 +55,7 @@ public class CityInfo extends AsyncTask<Void, Void, ArrayList<String>> {
         weather_desc = new String[5];
         wind_speed = new double[5];
         wind_direction = new int[5];
+        weather_main = new String[5];
 
         try {
             url = new URL(builder.toString());
@@ -99,9 +101,10 @@ public class CityInfo extends AsyncTask<Void, Void, ArrayList<String>> {
                     feels_like[0] = main.getInt("feels_like");
                     humidity[0] = main.getInt("humidity");
                     weather_desc[0] = weather.getString("description");
+                    weather_main[0] = weather.getString("main");
                     wind_speed[0] = wind.getDouble("speed");
                     wind_direction[0] = wind.getInt("deg");
-                    Log.i("TEST", date[0] + ", " + temp[0] + ", " + feels_like[0] + ", " + humidity[0] + ", " + weather_desc[0] + ", " + wind_speed[0] + ", " + wind_direction[0]);
+                    Log.i("TEST", date[0] + ", " + temp[0] + ", " + feels_like[0] + ", " + humidity[0] + ", " + weather_main[0] + ", " + wind_speed[0] + ", " + wind_direction[0]);
                 }
                 if (item.getString("dt_txt").contains("00:00:00") && count < 5) {
                     date[count] = item.getString("dt_txt");
@@ -109,9 +112,10 @@ public class CityInfo extends AsyncTask<Void, Void, ArrayList<String>> {
                     feels_like[count] = main.getInt("feels_like");
                     humidity[count] = main.getInt("humidity");
                     weather_desc[count] = weather.getString("description");
+                    weather_main[count] = weather.getString("main");
                     wind_speed[count] = wind.getDouble("speed");
                     wind_direction[count] = wind.getInt("deg");
-                    Log.i(name + " " + country, date[count] + ", " + temp[count] + ", " + feels_like[count] + ", " + humidity[count] + ", " + weather_desc[count] + ", " + wind_speed[count] + ", " + wind_direction[count]);
+                    Log.i(name + " " + country, date[count] + ", " + temp[count] + ", " + feels_like[count] + ", " + humidity[count] + ", " + weather_main[count] + ", " + wind_speed[count] + ", " + wind_direction[count]);
                     count++;
                 }
             }

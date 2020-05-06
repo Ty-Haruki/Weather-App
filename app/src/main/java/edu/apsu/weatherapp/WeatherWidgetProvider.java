@@ -42,14 +42,13 @@ public class WeatherWidgetProvider extends AppWidgetProvider {
                 CityInfo city = new CityInfo(defaultCity, context);
                 city.execute();
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 remoteViews.setTextViewText(R.id.degreesTV, (city.temp[0])+"°");// change to city get degrees
                 remoteViews.setTextViewText(R.id.cityName, city.name + " ," + city.country);// change to city get cityName
-                //remoteViews.setTextViewText(R.id.degreesTV, "50");// change to city get degrees
-                //remoteViews.setTextViewText(R.id.cityName, "Clarksville");// change to city get cityName
+                remoteViews.setImageViewResource(R.id.weatherImage, setPic(city));
                 Log.i("Worked", String.valueOf(city.temp[0]));
                 Intent intent = new Intent(context, WeatherWidgetProvider.class);
                 intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
@@ -81,6 +80,32 @@ public class WeatherWidgetProvider extends AppWidgetProvider {
         defaultCity = Integer.valueOf(approved);
         return defaultCity;
 
+    }
+
+    private int setPic(CityInfo city){
+
+        String[] condition;
+        condition = city.weather_main;
+        if(condition[0].equals("Thunderstorm")){
+            return R.drawable.thunderstorm;
+        }
+        else if(condition[0].equals("Drizzle")){
+            return R.drawable.cloudy_with_showers;
+        }
+        else if(condition[0].equals("Rain")){
+            return R.drawable.cloudy_with_showers;
+        }
+        else if(condition[0].equals("Snow")){
+            return R.drawable.snow;
+        }
+        else if(condition[0].equals("Clear")){
+            return R.drawable.sunny;
+        }
+        else if(condition[0].equals("Clouds")){
+            return R.drawable.cloudy;
+        }
+
+        return R.drawable.sunny;
     }
 
 }
